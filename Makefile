@@ -23,14 +23,15 @@ DEPS = $(OBJECTS:.o=.d)
 
 # flags #
 COMPILE_FLAGS = -Wall -Wextra -g	
-INCLUDES = -I include/ -I /usr/local/include
+INCLUDES = -I include/ -I /usr/local/include -I /Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home//include -I /Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/include/darwin
+
 # Space-separated pkg-config libraries used by this project
 LIBS = -L/usr/local/opt/openssl/lib -lssl -lcrypto
 
 .PHONY: default_target
 default_target: release
 
-.PHONY: release
+.PHONY: releaseı
 release: export CXXFLAGS := $(CXXFLAGS) $(COMPILE_FLAGS)
 release: dirs
 	@$(MAKE) all

@@ -1,5 +1,7 @@
 #include "main.h"
 
+#include <jni.h>
+
 void sha256_hash_string (unsigned char hash[SHA256_DIGEST_LENGTH], char outputBuffer[65])
 {
     int i = 0;
@@ -58,4 +60,12 @@ int main(int argc, char **args)
     printf("%s\n", buffer);
 
     return 0;
+}
+
+JNIEXPORT void JNICALL Java_Sha256JNI_sha256
+  (JNIEnv *env, jobject thisObj, jstring prompt)
+{
+    const char *str = env->GetStringUTFChars(prompt, 0);
+    sha256_string("Hello", (char *)str);
+    env->ReleaseStringUTFChars(prompt, 0);
 }
